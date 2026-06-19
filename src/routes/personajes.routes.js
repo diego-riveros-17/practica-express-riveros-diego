@@ -1,20 +1,26 @@
 import { Router } from "express";
 
-import { personajes } from "../data/personajes.js";
+import {
+  crearPj,
+  editarPj,
+  eliminarPj,
+  obtenerTodosLosPj,
+  obtenerUnPj,
+} from "../controllers/personajes.controllers.js";
 
 export const pjRouter = Router();
 
 //Obtener todos los personajes
-pjRouter.get("personajes", obtenerTodosLosPj);
+pjRouter.get("/personajes", obtenerTodosLosPj);
 
 //Obtener un personaje
-pjRouter.get("personajes/id:", obtenerPj);
+pjRouter.get("/personajes/:id", obtenerUnPj);
 
 //Insertar un personaje
-pjRouter.post("personajes", insetarPj);
+pjRouter.post("/personajes", crearPj);
 
 //Modificar un personaje
-pjRouter.put("personajes/id:", modificarPj);
+pjRouter.put("/personajes/:id", editarPj);
 
 //Eliminar un personaje
-pjRouter.delete("personajes/id:", eliminarPj);
+pjRouter.delete("/personajes/:id", eliminarPj);

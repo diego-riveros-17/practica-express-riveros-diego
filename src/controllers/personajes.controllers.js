@@ -23,9 +23,10 @@ export const obtenerUnPj = (req, res) => {
 };
 
 export const crearPj = (req, res) => {
-  const { nombre, imagen } = req.boby;
+  //console.log(req.boby);
+  const { nombre, imagen } = req.body;
 
-  if (name === "") {
+  if (nombre === "") {
     return res.status(400).json({
       message: "El nombre no puede ser vacio",
     });
@@ -47,7 +48,7 @@ export const crearPj = (req, res) => {
 
 export const editarPj = (req, res) => {
   const idPj = Number(req.params.id);
-  const { nombre, imagen } = req.boby;
+  const { nombre, imagen } = req.body;
 
   const pjEncontrado = personajes.findIndex(
     (personaje) => personaje.id === idPj,
