@@ -7,6 +7,12 @@ export const obtenerTodosLosPj = (req, res) => {
 export const obtenerUnPj = (req, res) => {
   const idPj = Number(req.params.id);
 
+  if (!Number.isInteger(idPj)) {
+    return res.status(400).json({
+      message: "El valor ingresado debe ser un número entero",
+    });
+  }
+
   const pjEncontrado = personajes.find((personaje) => {
     return personaje.id === idPj;
   });
@@ -26,9 +32,9 @@ export const crearPj = (req, res) => {
   //console.log(req.boby);
   const { nombre, imagen } = req.body;
 
-  if (nombre === "") {
+  if (nombre === "" || imagen === "") {
     return res.status(400).json({
-      message: "El nombre no puede ser vacio",
+      message: "El campo nombre o imagen está vacio",
     });
   }
 
@@ -49,6 +55,18 @@ export const crearPj = (req, res) => {
 export const editarPj = (req, res) => {
   const idPj = Number(req.params.id);
   const { nombre, imagen } = req.body;
+
+  if (!Number.isInteger(idPj)) {
+    return res.status(400).json({
+      message: "El valor ingresado debe ser un número entero",
+    });
+  }
+
+  if (nombre === "" || imagen === "") {
+    return res.status(400).json({
+      message: "Los campos no pueden estar enviados no pueden ser vacios",
+    });
+  }
 
   const pjEncontrado = personajes.findIndex(
     (personaje) => personaje.id === idPj,
