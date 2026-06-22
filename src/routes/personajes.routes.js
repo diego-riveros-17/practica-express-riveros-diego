@@ -10,6 +10,8 @@ import {
 
 export const pjRouter = Router();
 
+pjRouter.get("/", obtenerTodosLosPj);
+
 //Obtener todos los personajes
 pjRouter.get("/personajes", obtenerTodosLosPj);
 
